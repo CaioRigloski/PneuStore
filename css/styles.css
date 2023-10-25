@@ -14,6 +14,7 @@ a {
 main {
     display: grid;
     grid-template-columns: minmax(auto, auto) 1fr;
+    height: 100%;
 }
 
 #sidebar {
@@ -22,6 +23,8 @@ main {
     height: 100vh;
     width: 15vw;
     background-color: #B20000;
+    position: sticky;
+    top: 0;
 }
 
 #sidebar > t1 {
@@ -71,16 +74,86 @@ main {
 #produtos {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-auto-flow: row;
     justify-items: center;
-    align-items: center;
+    align-items: start;
+    padding: 5em;
 }
 
 #produtos > .produtos-item {
     display: grid;
     grid-template-rows: minmax(auto, auto) 1fr;
-    width: 25em;
-    height: 25em;
-    align-items: end;
+    width: min-content;
+    align-items: center;
     text-align: center;
+    justify-items: center;
+    cursor: pointer;
+
+    && .descricao {
+        display: none;
+    }
+}
+
+#produtos > .produtos-item > img {
+    object-fit: cover;
+    width: 20rem;
+    height: 20rem;
+}
+
+#modal-produto {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(128, 128, 128, 0.700);
+}
+
+#modal-produto > #caixa-descricao{
+    width: 30rem;
+    height: 30rem;
+    background-color: white;
+    color: black;
+    text-align: center;
+    overflow-y: scroll;
+}
+
+#contato-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 1.5em;
+}
+
+#contato-form > .form-item {
+    display: grid;
+
+    &&:nth-child(2)::before {
+        content: '';
+        height: 5rem;
+    }
+    &&:last-child::before {
+        content: '';
+        height: 8rem;
+    }
+    && > input:not([type='submit']) {
+        height: 2em;
+        width: 40rem;
+    }
+    && > #enviar-form {
+        width: 10em;
+        color: white;
+        background-color: #B20000;
+        border: none;
+        border-top: 1px solid #B34444;
+        border-bottom: 1px solid #FF6161;
+    }
 }
