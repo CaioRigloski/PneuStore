@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/styles.css" rel="stylesheet"></link>
+    <script src="scripts/form.js" defer></script>
     <title>Loja</title>
 </head>
 <body>
@@ -24,15 +25,15 @@
             <t1>Entramos em contato com você</t1>
             <div class="form-item">
                 <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome">
+                <input type="text" id="nome" name="nome" pattern="^[a-záàâãéèêíïóôõöúçñ ]{2,100}$" required>
             </div>
             <div class="form-item">
                 <label for="telefone">E-mail:</label>
-                <input type="email" id="email" name="email">
+                <input type="email" id="email" name="email" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" required>
             </div>
             <div class="form-item">
                 <label for="telefone">Telefone:</label>
-                <input type="tel" id="telefone" name="telefone">
+                <input type="tel" id="telefone" name="telefone" pattern="\(\d{2}\)\s\d{4,5}-\d{4}$" maxlength="15" required>
             </div>
             <div class="form-item">
                 <input id="enviar-form" type="submit" value="Enviar">

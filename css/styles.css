@@ -115,13 +115,24 @@ main {
     background-color: rgba(128, 128, 128, 0.700);
 }
 
-#modal-produto > #caixa-descricao{
+#modal-produto > #caixa-descricao {
     width: 30rem;
     height: 30rem;
     background-color: white;
     color: black;
     text-align: center;
     overflow-y: scroll;
+}
+
+#fechar-modal  {
+    display: grid;
+    justify-content: end;
+    width: 100%;
+    border: 1px solid white;
+    & > button {
+        background-color: #FF6161;
+        width: fit-content;
+    }
 }
 
 #contato-form {
@@ -157,3 +168,4 @@ main {
         border-bottom: 1px solid #FF6161;
     }
 }
+
