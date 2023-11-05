@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/styles.css" rel="stylesheet"></link>
+    <title>Pneu Store</title>
+</head>
+<body>
+    <main>
+        <div id="sidebar">
+            <t1>PNEU<br>STORE</t1>
+            <div id="menu">
+                <a href="index.html" class="menu-item">Início</a>
+                <a href="form.html" class="menu-item">Contato</a>
+                <a href="about.html" class="menu-item active">Sobre</a>
+            </div>
+            <div id="contato">
+                <a href="mailto:contato@pneustore.com.br">contato@pneustore.com.br</a>
+                <a href="https://api.whatsapp.com/send?1=pt_BR&phone=5541912345678">(41) 91234-5678</a>
+            </div>
+        </div>
+        <section id="apresentacao">
+            <h3>Autor: Caio Henrique Rigloski</h3>
+            <div>
+                <h4>Defesa do trabalho: <a href="youtube.com" class="link">Link para o vídeo</a></h4>
+            </div>
+            <div>
+                <p>Vemos o tratamento dos elementos em todas os arquivos de código do trabalho. Por exemplo:</p>
+                <h5>HTML</h5>
+                <p>Ao entrar em qualquer uma das páginas, o botão do menu referente à ela está em cor de fundo diferente, mudança essa que é causada pelo uso da classe "active":</p>
+                <pre>
+                    &lta href="index.html" class="menu-item"&gtInício&lt/a&gt
+                    &lta href="form.html" class="menu-item"&gtContato&lt/a&gt
+                    &lta href="about.html" class="menu-item active"&gtSobre&lt/a&gt
+                </pre>
+                <h5>CSS</h5>
+                <p>A classe mencionada acima estilizada em CSS:</p>
+                <pre>
+                    #sidebar > #menu .menu-item.active {
+                        background-color: #6B5F5F;
+                        border-right: 1px solid #612525;
+                    }
+                </pre>
+                <h5>JavaScript</h5>
+                <p>Além do pattern contido na própria tag input dos campos de nome, e-mail e telefone na página form.html, temos a verificação e tratamento dos dados antes de enviar o formulário, realizados através do código contido no arquivo form.js.</p>
+                <p>O código abaixo verifica se todos os dados seguem os devidos patterns, e retorna uma mensagem na tela caso não:</p>
+                <pre>
+                    botaoEnvio.addEventListener('click', event => {
+                        let nomeValido = checarNome(campoNome.value)
+                        let emailValido = checarEmail(campoEmail.value)
+                        let telefoneValido = checarTelefone(campoTelefone.value)
+                    
+                        if(telefoneValido && emailValido && nomeValido) {
+                            return true
+                        } else {
+                            caixaMensagemErro.setAttribute('display', 'block')
+                    
+                            if(!nomeValido) {
+                                mensagemErro.innerText = "Nome inválido"
+                            } else if(!emailValido) {
+                                mensagemErro.innerText = "E-mail inválido"
+                            } else {
+                                mensagemErro.innerText = "Telefone inválido"
+                            }
+                    
+                            setTimeout(() => {
+                                caixaMensagemErro.setAttribute('display', 'none')
+                            }, 2000)
+                            event.preventDefault()
+                        }
+                    })
+                </pre>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

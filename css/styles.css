@@ -122,6 +122,7 @@ main {
     color: black;
     text-align: center;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 #fechar-modal  {
@@ -169,3 +170,55 @@ main {
     }
 }
 
+#contato-form > #mensagem-erro {
+    display: none;
+    height: 20vh;
+}
+
+#contato-cliente {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 1.5em;
+    && > div {
+        display: inline-flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1em;
+        width: 50vw;
+    }
+}
+
+.link {
+    text-decoration: underline;
+}
+
+#apresentacao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    && > h3 {
+        padding-top: 2rem;
+    }
+}
+
+#apresentacao > div {
+    display: inherit;
+    flex-direction: column;
+    gap: 1rem;
+    & > h5 {
+        margin: 0;
+        padding: 0.5rem;
+        background-color: white;
+        color: black;
+    }
+    && > p {
+        margin: 0;
+    }
+    && > h4 {
+        padding: 1rem;
+    }
+}

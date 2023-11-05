@@ -1,10 +1,37 @@
 let campoTelefone = document.getElementById('telefone')
 let campoEmail = document.getElementById('email')
 let campoNome = document.getElementById('nome')
+let botaoEnvio =  document.getElementById('enviar-form')
 
-campoTelefone.addEventListener('keyup', event => mascaraTelefone(event))
-campoEmail.addEventListener('keyup', event => console.log(checarEmail(campoEmail.value)))
-campoNome.addEventListener('keyup', event => console.log(checarNome(campoNome.value)))
+let caixaMensagemErro = document.getElementById('mensagem-erro')
+let mensagemErro = document.getElementById('mensagem-erro-texto')
+
+campoTelefone.addEventListener('keydown', event => mascaraTelefone(event))
+
+botaoEnvio.addEventListener('click', event => {
+    let nomeValido = checarNome(campoNome.value)
+    let emailValido = checarEmail(campoEmail.value)
+    let telefoneValido = checarTelefone(campoTelefone.value)
+
+    if(telefoneValido && emailValido && nomeValido) {
+        return true
+    } else {
+        caixaMensagemErro.setAttribute('display', 'block')
+
+        if(!nomeValido) {
+            mensagemErro.innerText = "Nome inválido"
+        } else if(!emailValido) {
+            mensagemErro.innerText = "E-mail inválido"
+        } else {
+            mensagemErro.innerText = "Telefone inválido"
+        }
+
+        setTimeout(() => {
+            caixaMensagemErro.setAttribute('display', 'none')
+        }, 2000)
+        event.preventDefault()
+    }
+})
 
 function mascaraTelefone(event) {
     let tecla = event.key;
@@ -13,7 +40,6 @@ function mascaraTelefone(event) {
     // \D+ = troca qualquer caractere que não seja um dígito por caracter vazio
     let telefone = event.target.value.replace(/\D+/g, "");
     //let telefone = campoTelefone.value.replace(/\D+/g, "");
-    console.log(telefone)
     // Regex: i = case insensitive
     // Se Tecla é número, concatena com telefone
     if (/^[0-9]$/i.test(tecla)) {
@@ -38,11 +64,14 @@ function mascaraTelefone(event) {
     }
 }
 
+function checarTelefone(telefone) {
+    return /\(\d{2}\)\s\d{4,5}-\d{4}$/.test(telefone)
+}
+
 function checarEmail(email) {
-    return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/i.test(email)
+    return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)
 }
 
 function checarNome(nome) {
-    console.log(/^[a-záàâãéèêíïóôõöúçñ ]{2,100}$/i.test(nome))
-    return /^[a-záàâãéèêíïóôõöúçñ ]{2,100}$/i.test(nome)
+    return /^[A-Za-záàâãéèêíïóôõöúçñ ]{2,100}$/.test(nome)
 }
