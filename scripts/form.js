@@ -2,21 +2,23 @@ let campoTelefone = document.getElementById('telefone')
 let campoEmail = document.getElementById('email')
 let campoNome = document.getElementById('nome')
 let botaoEnvio =  document.getElementById('enviar-form')
-
 let caixaMensagemErro = document.getElementById('mensagem-erro')
 let mensagemErro = document.getElementById('mensagem-erro-texto')
 
+// Monitora no clique no campo de telefone, para mascarar conforme patterns.
 campoTelefone.addEventListener('keydown', event => mascaraTelefone(event))
 
+// Monitora o clique no botão de envio do formulário e faz a checagem de patterns, mostrando o erro na tela, caso houver.
 botaoEnvio.addEventListener('click', event => {
     let nomeValido = checarNome(campoNome.value)
     let emailValido = checarEmail(campoEmail.value)
     let telefoneValido = checarTelefone(campoTelefone.value)
+    console.log(nomeValido, emailValido, telefoneValido)
 
     if(telefoneValido && emailValido && nomeValido) {
         return true
     } else {
-        caixaMensagemErro.setAttribute('display', 'block')
+        caixaMensagemErro.style.display = 'block'
 
         if(!nomeValido) {
             mensagemErro.innerText = "Nome inválido"
@@ -27,7 +29,7 @@ botaoEnvio.addEventListener('click', event => {
         }
 
         setTimeout(() => {
-            caixaMensagemErro.setAttribute('display', 'none')
+            caixaMensagemErro.style.display = 'none'
         }, 2000)
         event.preventDefault()
     }
@@ -36,14 +38,13 @@ botaoEnvio.addEventListener('click', event => {
 function mascaraTelefone(event) {
     let tecla = event.key;
     // Regex: 
-    // g = não termina verificação enquanto não houver combinação para todos os elementos  
-    // \D+ = troca qualquer caractere que não seja um dígito por caracter vazio
+    // g = não termina verificação enquanto não houver combinação para todos os elementos.
+    // \D+ = troca qualquer caractere que não seja um dígito por caracter vazio.
     let telefone = event.target.value.replace(/\D+/g, "");
-    //let telefone = campoTelefone.value.replace(/\D+/g, "");
-    // Regex: i = case insensitive
-    // Se Tecla é número, concatena com telefone
+
+    // Regex: i = case insensitive.
+    // Se Tecla é número, concatena com telefone.
     if (/^[0-9]$/i.test(tecla)) {
-        //telefone = telefone + tecla;
         let tamanho = telefone.length;
 
         if (tamanho > 10) { 
@@ -64,14 +65,15 @@ function mascaraTelefone(event) {
     }
 }
 
+// checagens de pattern
 function checarTelefone(telefone) {
     return /\(\d{2}\)\s\d{4,5}-\d{4}$/.test(telefone)
 }
 
 function checarEmail(email) {
-    return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)
+    return /[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$/.test(email)
 }
 
 function checarNome(nome) {
-    return /^[A-Za-záàâãéèêíïóôõöúçñ ]{2,100}$/.test(nome)
+    return /[A-Za-z\W+ ]{2,100}$/.test(nome)
 }
